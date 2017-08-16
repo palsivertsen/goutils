@@ -11,6 +11,8 @@ var (
 	ErrNotHex = errors.New("String not hex")
 	// ErrNoMatch indicates a Match error
 	ErrNoMatch = errors.New("String no match")
+	// ErrFunc indicates an error when validating using func
+	ErrFunc = errors.New("func did not validate to true")
 )
 
 // StringValidator is a validator used to validate strings
@@ -59,6 +61,17 @@ func (v *StringValidator) IsMatch(pattern string) bool {
 func (v *StringValidator) Match(pattern string) *StringValidator {
 	if !v.IsMatch(pattern) {
 		v.Error(ErrNoMatch)
+	}
+	return v
+}
+
+func (v *StringValidator) IsFunc(f func(string) bool) bool {
+	return f(v.value)
+}
+
+func (v *StringValidator) Func(f func(string) bool) *StringValidator {
+	if !v.IsFunc(f) {
+		v.Error(ErrFunc)
 	}
 	return v
 }

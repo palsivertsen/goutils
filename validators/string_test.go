@@ -15,6 +15,18 @@ var (
 	invalidRegex = map[string][]string{
 		"^[a-c]*$": []string{"abcd", "ABC"},
 	}
+	validFunc = map[string][]func(string) bool{
+		"some string": []func(string) bool{
+			func(string) bool { return true },
+			func(value string) bool { return value == "some string" },
+		},
+	}
+	invalidFunc = map[string][]func(string) bool{
+		"some string": []func(string) bool{
+			func(string) bool { return false },
+			func(value string) bool { return value != "some string" },
+		},
+	}
 )
 
 func TestHex(t *testing.T) {
@@ -39,6 +51,21 @@ func TestRegex(t *testing.T) {
 		for _, value := range values {
 			assert.False(t, String(value).IsMatch(pattern), value)
 			assert.Equal(t, ErrNoMatch, String(value).Match(pattern).FirstError(), value)
+		}
+	}
+}
+
+func TestFunc(t *testing.T) {
+	for value, funcs := range validFunc {
+		for _, f := range funcs {
+			assert.True(t, String(value).IsFunc(f), value)
+			assert.Nil(t, String(value).Func(f).FirstError(), value)
+		}
+	}
+	for value, funcs := range invalidFunc {
+		for _, f := range funcs {
+			assert.False(t, String(value).IsFunc(f), value)
+			assert.Equal(t, ErrFunc, String(value).Func(f).FirstError(), value)
 		}
 	}
 }
