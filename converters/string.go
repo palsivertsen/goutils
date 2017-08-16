@@ -1,6 +1,7 @@
 package converters
 
 import (
+	"net/url"
 	"strconv"
 	"time"
 )
@@ -93,6 +94,16 @@ func (c *StringConverter) MustInt64() int64 {
 
 func (c *StringConverter) ToInt64() (int64, error) {
 	return c.toInt(64)
+}
+
+func (c *StringConverter) MustURL() *url.URL {
+	u, err := c.ToURL()
+	panicOnError(err)
+	return u
+}
+
+func (c *StringConverter) ToURL() (*url.URL, error) {
+	return url.Parse(c.from)
 }
 
 func (c *StringConverter) toInt(bitSize int) (int64, error) {
