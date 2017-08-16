@@ -10,7 +10,11 @@ type IntConverter struct {
 }
 
 func Int(i int) *IntConverter {
-	return &IntConverter{i: int64(i)}
+	return Int64(int64(i))
+}
+
+func Int64(i int64) *IntConverter {
+	return &IntConverter{i: i}
 }
 
 func (c *IntConverter) ToTimeFromNsec() time.Time {
