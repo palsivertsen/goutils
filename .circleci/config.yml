@@ -12,5 +12,5 @@ jobs:
       - run: chmod u+x ./cc-test-reporter
       - run: ./cc-test-reporter before-build
       - run: go get -v -t -d ./...
-      - run: go test -coverprofile=c.out ./converters
+      - run: go test -coverprofile=converters.out ./converters
       - run: ./cc-test-reporter after-build -t gocov --exit-code $?
