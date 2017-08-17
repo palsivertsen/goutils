@@ -13,5 +13,6 @@ jobs:
       - run: chmod u+x ./cc-test-reporter
       - run: ./cc-test-reporter before-build
       - run: go get -v -t -d ./...
-      - run: gocov test $(go list ./... | grep -v /vendor/) | ./cc-test-reporter upload-coverage
+      - run: gocov test $(go list ./... | grep -v /vendor/) > coverage/codeclimate.json
+      - run: ./cc-test-reporter upload-coverage
       - run: ./cc-test-reporter after-build -t gocov --exit-code $?
