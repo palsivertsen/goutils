@@ -15,4 +15,5 @@ jobs:
       - run: go get -v -t -d ./...
       - run: gocov test $(go list ./... | grep -v /vendor/) > codeclimate.json
       - run: ./cc-test-reporter upload-coverage -i codeclimate.json
+      - run: cat codeclimate.json
       - run: ./cc-test-reporter after-build -t gocov --exit-code $?
