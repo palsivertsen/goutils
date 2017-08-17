@@ -1,5 +1,9 @@
 goutils is a set of common utilities for the Go language
 
+[![Code Climate](https://codeclimate.com/github/palsivertsen/goutils/badges/gpa.svg)](https://codeclimate.com/github/palsivertsen/goutils)
+[![Test Coverage](https://codeclimate.com/github/palsivertsen/goutils/badges/coverage.svg)](https://codeclimate.com/github/palsivertsen/goutils/coverage)
+[![Issue Count](https://codeclimate.com/github/palsivertsen/goutils/badges/issue_count.svg)](https://codeclimate.com/github/palsivertsen/goutils)
+
 ## Usage
 ### Validators
 Some simple validations:
