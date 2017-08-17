@@ -2,6 +2,7 @@ package converters
 
 import (
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -26,4 +27,28 @@ func TestURL(t *testing.T) {
 		assert.Error(t, err)
 		assert.Panics(t, func() { converter.MustURL() })
 	}
+}
+
+func TestMustTimeFromNsec(t *testing.T) {
+	assert.Equal(t, time.Unix(1502993369, 783964911), String("1502993369783964911").MustTimeFromNsec())
+	// TODO: Test panic
+}
+
+func TestToTimeFromNsec(t *testing.T) {
+	a, err := String("1502993369783964911").ToTimeFromNsec()
+	assert.Equal(t, time.Unix(1502993369, 783964911), a)
+	assert.Nil(t, err)
+	// TODO: Test error
+}
+
+func TestMustTimeFromSec(t *testing.T) {
+	assert.Equal(t, time.Unix(1502993369, 0), String("1502993369").MustTimeFromSec())
+	// TODO: Test panic
+}
+
+func TestToTimeFromSec(t *testing.T) {
+	a, err := String("1502993369").ToTimeFromSec()
+	assert.Equal(t, time.Unix(1502993369, 0), a)
+	assert.Nil(t, err)
+	// TODO: Test error
 }
