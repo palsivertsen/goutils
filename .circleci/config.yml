@@ -1,0 +1,16 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.8
+
+    working_directory: /go/src/github.com/palsivertsen/goutils
+    steps:
+      - checkout
+
+      - run: curl -o ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -L
+      - run: chmod u+x ./cc-test-reporter
+      - run: ./cc-test-reporter before-build
+      - run: go get -v -t -d ./...
+      - run: go test -v ./...
+      - run: ./cc-test-reporter after-build --exit-code $?
