@@ -13,5 +13,5 @@ jobs:
       - run: chmod u+x ./cc-test-reporter
       - run: ./cc-test-reporter before-build
       - run: go get -v -t -d ./...
-      - run: gocov test -v ./... | gocov report > coverage
+      - run: gocov test $(go list ./... | grep -v /vendor/) | gocov report > c.out
       - run: ./cc-test-reporter after-build -t gocov --exit-code $?
