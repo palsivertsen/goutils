@@ -8,13 +8,10 @@ jobs:
     steps:
       - checkout
 
-      - run: go get github.com/axw/gocov/gocov
       - run: curl -o ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -L
       - run: chmod u+x ./cc-test-reporter
       - run: ./cc-test-reporter before-build
       - run: go get -v -t -d ./...
-      - run: gocov test $(go list ./... | grep -v /vendor/) > codeclimate.json
-      - run: ls
-      - run: cat codeclimate.json
-      - run: ./cc-test-reporter upload-coverage -i codeclimate.json
+      - run: go list ./... | grep -v /vendor/ | xargs -I {} bash -c "go test -coverprofile=c.out {} && ./cc-test-reporter format-coverage --output \"coverage/codeclimate.{}.json\""
+      - run: ./cc-test-reporter sum-coverage --output - `find coverage -type f` | ./cc-test-reporter upload-coverage --input -
       - run: ./cc-test-reporter after-build -t gocov --exit-code $?
