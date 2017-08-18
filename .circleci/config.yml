@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  coverage:
+  build:
     docker:
       - image: circleci/golang:1.8
 
