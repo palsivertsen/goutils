@@ -13,5 +13,5 @@ jobs:
       - run: ./cc-test-reporter before-build
       - run: go get -v -t -d ./...
       - run: go list ./... | grep -v /vendor/ | xargs -I {} bash -c "go test -coverprofile=c.out {} && ./cc-test-reporter format-coverage --output \"coverage/codeclimate.{}.json\""
-      - run: ./cc-test-reporter sum-coverage --output coverage.out `find coverage -type f`
+      - run: ./cc-test-reporter sum-coverage --output  c.out `find coverage -type f`
       - run: ./cc-test-reporter after-build --exit-code $?
