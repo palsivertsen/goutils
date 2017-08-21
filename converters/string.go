@@ -16,13 +16,6 @@ func String(from string) *StringConverter {
 	return &StringConverter{from: from}
 }
 
-// MustTimeFromNsec calls ToTimeFromNsec and panics on error
-func (c *StringConverter) MustTimeFromNsec() time.Time {
-	t, err := c.ToTimeFromNsec()
-	panicOnError(err)
-	return t
-}
-
 // ToTimeFromNsec converts from nanoseconds to time.Time
 // Returns error if string is not an int
 func (c *StringConverter) ToTimeFromNsec() (time.Time, error) {
@@ -33,9 +26,9 @@ func (c *StringConverter) ToTimeFromNsec() (time.Time, error) {
 	return time.Unix(0, i), nil
 }
 
-// MustTimeFromSec calls ToTimeFromSec and panics on error
-func (c *StringConverter) MustTimeFromSec() time.Time {
-	t, err := c.ToTimeFromSec()
+// MustTimeFromNsec calls ToTimeFromNsec and panics on error
+func (c *StringConverter) MustTimeFromNsec() time.Time {
+	t, err := c.ToTimeFromNsec()
 	panicOnError(err)
 	return t
 }
@@ -50,11 +43,11 @@ func (c *StringConverter) ToTimeFromSec() (time.Time, error) {
 	return time.Unix(i, 0), nil
 }
 
-// MustInt calls ToInt and panics on error
-func (c *StringConverter) MustInt() int {
-	i, err := c.ToInt()
+// MustTimeFromSec calls ToTimeFromSec and panics on error
+func (c *StringConverter) MustTimeFromSec() time.Time {
+	t, err := c.ToTimeFromSec()
 	panicOnError(err)
-	return i
+	return t
 }
 
 // ToInt converts to int. Returns error if string is not an int
@@ -63,9 +56,9 @@ func (c *StringConverter) ToInt() (int, error) {
 	return int(i), err
 }
 
-// MustInt8 calls ToInt8 and panics on error
-func (c *StringConverter) MustInt8() int8 {
-	i, err := c.ToInt8()
+// MustInt calls ToInt and panics on error
+func (c *StringConverter) MustInt() int {
+	i, err := c.ToInt()
 	panicOnError(err)
 	return i
 }
@@ -76,9 +69,9 @@ func (c *StringConverter) ToInt8() (int8, error) {
 	return int8(i), err
 }
 
-// MustInt16 calls ToInt16 and panics on error
-func (c *StringConverter) MustInt16() int16 {
-	i, err := c.ToInt16()
+// MustInt8 calls ToInt8 and panics on error
+func (c *StringConverter) MustInt8() int8 {
+	i, err := c.ToInt8()
 	panicOnError(err)
 	return i
 }
@@ -89,9 +82,9 @@ func (c *StringConverter) ToInt16() (int16, error) {
 	return int16(i), err
 }
 
-// MustInt32 calls ToInt32 and panics on error
-func (c *StringConverter) MustInt32() int32 {
-	i, err := c.ToInt32()
+// MustInt16 calls ToInt16 and panics on error
+func (c *StringConverter) MustInt16() int16 {
+	i, err := c.ToInt16()
 	panicOnError(err)
 	return i
 }
@@ -102,9 +95,9 @@ func (c *StringConverter) ToInt32() (int32, error) {
 	return int32(i), err
 }
 
-// MustInt64 calls ToInt64 and panics on error
-func (c *StringConverter) MustInt64() int64 {
-	i, err := c.ToInt64()
+// MustInt32 calls ToInt32 and panics on error
+func (c *StringConverter) MustInt32() int32 {
+	i, err := c.ToInt32()
 	panicOnError(err)
 	return i
 }
@@ -114,17 +107,24 @@ func (c *StringConverter) ToInt64() (int64, error) {
 	return c.toInt(64)
 }
 
-// MustURL calls ToURL and panics on error
-func (c *StringConverter) MustURL() *url.URL {
-	u, err := c.ToURL()
+// MustInt64 calls ToInt64 and panics on error
+func (c *StringConverter) MustInt64() int64 {
+	i, err := c.ToInt64()
 	panicOnError(err)
-	return u
+	return i
 }
 
 // ToURL converts to url.URL. Returns error on syntax errors.
 // See url.Parse
 func (c *StringConverter) ToURL() (*url.URL, error) {
 	return url.Parse(c.from)
+}
+
+// MustURL calls ToURL and panics on error
+func (c *StringConverter) MustURL() *url.URL {
+	u, err := c.ToURL()
+	panicOnError(err)
+	return u
 }
 
 func (c *StringConverter) toInt(bitSize int) (int64, error) {
