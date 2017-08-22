@@ -73,6 +73,28 @@ func TestToTimeFromSec(t *testing.T) {
 	}
 }
 
+func TestTimeFormatUtcDDMMYYYYSlash(t *testing.T) {
+	valids := []map[string]time.Time{{"01/02/2000": time.Date(2000, 02, 01, 0, 0, 0, 0, time.UTC)}}
+	invalids := []string{" ", "not a date", "01.02.2000", "1/2/2000"}
+	for _, valid := range valids {
+		for value, expected := range valid {
+			converter := String(value)
+			actual, err := converter.ToTimeFormatUtcDDMMYYYYSlash()
+			assert.Equal(t, expected, actual)
+			assert.NoError(t, err, value)
+			assert.NotPanics(t, func() {
+				assert.Equal(t, expected, converter.MustTimeFormatUtcDDMMYYYYSlash(), value)
+			}, value)
+		}
+	}
+	for _, value := range invalids {
+		converter := String(value)
+		_, err := converter.ToTimeFormatUtcDDMMYYYYSlash()
+		assert.Error(t, err, value)
+		assert.Panics(t, func() { converter.MustTimeFormatUtcDDMMYYYYSlash() }, value)
+	}
+}
+
 func TestInt(t *testing.T) {
 	for i, expected := range validInts {
 		converter := String(i)

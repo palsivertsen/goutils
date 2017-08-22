@@ -50,6 +50,20 @@ func (c *StringConverter) MustTimeFromSec() time.Time {
 	return t
 }
 
+// ToTimeFormatUtcDDMMYYYYSlash expects a string in "DD/MM/YY" format and converts it to time.Time
+func (c *StringConverter) ToTimeFormatUtcDDMMYYYYSlash() (time.Time, error) {
+	return time.Parse("02/01/2006", c.from)
+}
+
+// MustTimeFormatUtcDDMMYYYYSlash calls ToTimeFormatUtcDDMMYYYYSlash and panics on error
+func (c *StringConverter) MustTimeFormatUtcDDMMYYYYSlash() time.Time {
+	t, err := c.ToTimeFormatUtcDDMMYYYYSlash()
+	if err != nil {
+		panic(err)
+	}
+	return t
+}
+
 // ToInt converts to int. Returns error if string is not an int
 func (c *StringConverter) ToInt() (int, error) {
 	i, err := c.toInt(0)
