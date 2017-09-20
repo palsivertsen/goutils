@@ -19,3 +19,12 @@ func TestValidator(t *testing.T) {
 	assert.EqualError(t, errs[0], "first error")
 	assert.EqualError(t, errs[1], "second error")
 }
+
+func TestVerifyWithError(t *testing.T) {
+	validator := Validator{}
+	validator.verifyWithError(true, errors.New("this error is NOT added"))
+	assert.False(t, validator.HasErrors())
+	validator.verifyWithError(false, errors.New("this error is added"))
+	assert.True(t, validator.HasErrors())
+	assert.Error(t, validator.FirstError(), "this error is added")
+}

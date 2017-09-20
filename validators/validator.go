@@ -28,3 +28,22 @@ func (v *Validator) FirstError() error {
 	}
 	return v.errors[0]
 }
+
+// verifyWithError adds the given error to the Validator if given boolean is false.
+// Userful for implementing error validation functions:
+//	func (v *StringValidator) Hex() *StringValidator {
+//		if !v.IsHex() {
+//			v.Error(ErrNotHex)
+//		}
+//		return v
+//	}
+// Becomes:
+//	func (v *StringValidator) Hex() *StringValidator {
+// 		v.verifyWithError(v.IsHex(), ErrNotHex)
+//		return v
+// 	}
+func (v *Validator) verifyWithError(isValid bool, err error) {
+	if !isValid {
+		v.Error(err)
+	}
+}
