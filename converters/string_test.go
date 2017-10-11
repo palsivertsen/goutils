@@ -10,15 +10,15 @@ import (
 var (
 	validURLs     = []string{"http://google.com/"}
 	invalidURLs   = []string{":"}
-	validInts     = map[string]int{"-2": -2, "-1": -1, "0": 0, "1": 1, "2": 2}
+	validInts     = map[string]int{"-2": -2, "-1": -1, "0": 0, "1": 1, "2": 2, "09": 9}
 	invalidInts   = []string{"a", "b", "c"}
-	validInt8s    = map[string]int8{"-2": -2, "-1": -1, "0": 0, "1": 1, "2": 2}
+	validInt8s    = map[string]int8{"-2": -2, "-1": -1, "0": 0, "1": 1, "2": 2, "09": 9}
 	invalidInt8s  = invalidInts
-	validInt16s   = map[string]int16{"-2": -2, "-1": -1, "0": 0, "1": 1, "2": 2}
+	validInt16s   = map[string]int16{"-2": -2, "-1": -1, "0": 0, "1": 1, "2": 2, "09": 9}
 	invalidInt16s = invalidInts
-	validInt32s   = map[string]int32{"-2": -2, "-1": -1, "0": 0, "1": 1, "2": 2}
+	validInt32s   = map[string]int32{"-2": -2, "-1": -1, "0": 0, "1": 1, "2": 2, "09": 9}
 	invalidInt32s = invalidInts
-	validInt64s   = map[string]int64{"-2": -2, "-1": -1, "0": 0, "1": 1, "2": 2}
+	validInt64s   = map[string]int64{"-2": -2, "-1": -1, "0": 0, "1": 1, "2": 2, "09": 9}
 	invalidInt64s = invalidInts
 )
 

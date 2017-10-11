@@ -142,7 +142,7 @@ func (c *StringConverter) MustURL() *url.URL {
 }
 
 func (c *StringConverter) toInt(bitSize int) (int64, error) {
-	i, err := strconv.ParseInt(c.from, 0, 64)
+	i, err := strconv.ParseInt(c.from, 10, 64)
 	if err != nil {
 		return 0, err
 	}
