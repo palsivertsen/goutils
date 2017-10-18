@@ -1,8 +1,12 @@
 package validators
 
 import (
+	"log"
+	"regexp"
 	"testing"
+	"time"
 
+	fuzz "github.com/google/gofuzz"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -139,4 +143,55 @@ func TestLen(t *testing.T) {
 			assert.Equal(t, ErrLen, String(value).Len(l).FirstError(), "%s !len %d", value, l)
 		}
 	}
+}
+
+func TestFuzz(t *testing.T) {
+	seed := time.Now().UnixNano()
+	f := fuzz.NewWithSeed(seed)
+	var value string
+	f.Fuzz(&value)
+	log.Printf("Seed: %d\tValue: %s", seed, value)
+
+	unit := String(value)
+
+	unit.Hex()
+	unit.IsHex()
+
+	unit.IsFunc(func(arg1 string) bool {
+		var b bool
+		f.Fuzz(&b)
+		return b
+	})
+
+	var isLen int
+	f.Fuzz(&isLen)
+	unit.IsLen(isLen)
+
+	var isMatch regexp.Regexp
+	f.Fuzz(&isMatch)
+	unit.IsMatch(isMatch.String())
+
+	var isMaxLen int
+	f.Fuzz(&isMaxLen)
+	unit.IsMaxLen(isMaxLen)
+
+	var isMinLen int
+	f.Fuzz(&isMinLen)
+	unit.IsMinLen(isMinLen)
+
+	var len int
+	f.Fuzz(&len)
+	unit.Len(len)
+
+	var match regexp.Regexp
+	f.Fuzz(&match)
+	unit.Match(match.String())
+
+	var maxLen int
+	f.Fuzz(&maxLen)
+	unit.MaxLen(maxLen)
+
+	var minLen int
+	f.Fuzz(&minLen)
+	unit.MinLen(minLen)
 }

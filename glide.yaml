@@ -2,3 +2,4 @@ package: github.com/palsivertsen/goutils
 import: []
 testImport:
 - package: github.com/stretchr/testify
+- package: github.com/google/gofuzz

@@ -1,11 +1,13 @@
-hash: 811d09dd2c04272b33ebdf91db63f96c50336eff7241d260e589934132ee9d4c
-updated: 2017-08-15T15:38:27.862912898+02:00
+hash: e0792bdd1852e934b16b3d1b6107dbb2edfc81555c209a08d438cc7b2c19c9da
+updated: 2017-10-18T17:38:23.654387664+02:00
 imports: []
 testImports:
 - name: github.com/davecgh/go-spew
   version: 04cdfd42973bb9c8589fd6a731800cf222fde1a9
   subpackages:
   - spew
+- name: github.com/google/gofuzz
+  version: 24818f796faf91cd76ec7bddd72458fbced7a6c1
 - name: github.com/pmezard/go-difflib
   version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
   subpackages:
