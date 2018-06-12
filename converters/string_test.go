@@ -1,6 +1,7 @@
 package converters
 
 import (
+	"fmt"
 	"testing"
 	"time"
 
@@ -183,4 +184,18 @@ func TestInt64(t *testing.T) {
 		assert.Error(t, err, i)
 		assert.Panics(t, func() { converter.MustInt64() }, i)
 	}
+}
+
+func ExampleMustTimeFromNsec() {
+	t := String("1502835623824559499").MustTimeFromNsec()
+	fmt.Println(t.UTC().Format(time.UnixDate))
+	// Output:
+	// Tue Aug 15 22:20:23 UTC 2017
+}
+
+func ExampleMustURL() {
+	t := String("https://example.com").MustURL()
+	fmt.Println(t)
+	// Output:
+	// https://example.com
 }

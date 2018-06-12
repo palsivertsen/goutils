@@ -8,9 +8,9 @@ import (
 
 var (
 	// ErrNotHex indicates a Hex error
-	ErrNotHex = errors.New("String not hex")
+	ErrNotHex = errors.New("String is not hex")
 	// ErrNoMatch indicates a Match error
-	ErrNoMatch = errors.New("String no match")
+	ErrNoMatch = errors.New("String does not match")
 	// ErrFunc indicates an error when validating using func
 	ErrFunc = errors.New("func did not validate to true")
 	// ErrMax validator length too long
