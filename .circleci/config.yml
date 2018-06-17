@@ -8,16 +8,16 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Dependencies
-          command: |
-            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
-            dep ensure
-
-      - run:
           name: Download reporting tool
           command: |
             curl -o ./cc-test-reporter https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 -L
             chmod u+x ./cc-test-reporter
+            ./cc-test-reporter before-build --exit-code $?
+      - run:
+          name: Dependencies
+          command: |
+            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+            dep ensure
       - run:
           name: Code coverage
           command: |
