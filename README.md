@@ -5,6 +5,7 @@ goutils is a set of common utilities for the Go language
 [![CircleCI](https://circleci.com/gh/palsivertsen/goutils.svg?style=svg)](https://circleci.com/gh/palsivertsen/goutils) [![Code Climate](https://codeclimate.com/github/palsivertsen/goutils/badges/gpa.svg)](https://codeclimate.com/github/palsivertsen/goutils) [![Test Coverage](https://codeclimate.com/github/palsivertsen/goutils/badges/coverage.svg)](https://codeclimate.com/github/palsivertsen/goutils/coverage) [![Issue Count](https://codeclimate.com/github/palsivertsen/goutils/badges/issue_count.svg)](https://codeclimate.com/github/palsivertsen/goutils)
 
 This library provides utilities for validation and convertion of types.
+See[documentation](https://godoc.org/github.com/palsivertsen/goutils)
 
 ## Validators
 
@@ -45,7 +46,7 @@ goutils currently has validation implementations for the following types:
 Planned validators
 * int (8/16/32/64)
 * uint (8/16/32/64)
-* float (32/64
+* float (32/64)
 
 More validation functions and types to come.
 

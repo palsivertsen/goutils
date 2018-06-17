@@ -186,14 +186,14 @@ func TestInt64(t *testing.T) {
 	}
 }
 
-func ExampleMustTimeFromNsec() {
+func ExampleStringConverter_MustTimeFromNsec() {
 	t := String("1502835623824559499").MustTimeFromNsec()
 	fmt.Println(t.UTC().Format(time.UnixDate))
 	// Output:
 	// Tue Aug 15 22:20:23 UTC 2017
 }
 
-func ExampleMustURL() {
+func ExampleStringConverter_MustURL() {
 	t := String("https://example.com").MustURL()
 	fmt.Println(t)
 	// Output:
