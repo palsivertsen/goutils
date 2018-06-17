@@ -1,4 +1,5 @@
-engines:
+version: "2"
+plugins:
   golint:
     enabled: true
   gofmt:
@@ -15,3 +16,4 @@ ratings:
   - "**.md"
 exclude_paths:
 - "**/vendor/**/*"
+- "**/*_test.go"
